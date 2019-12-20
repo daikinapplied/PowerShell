@@ -1,9 +1,9 @@
 # PowerShell
 
 
-#Folders
+# Folders
 - SharePoint:  you will find scripts to manage Sites, Lists, and Columns.
-- IIS: Contains a script to full create a IIS application.
+- IIS: Contains a script that fully creates an IIS application.
 
 
 
