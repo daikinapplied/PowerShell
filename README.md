@@ -1,2 +1,10 @@
 # PowerShell
-original purpose was to work with powershell scripts
+
+
+#Folders
+- SharePoint:  you will find scripts to manage Sites, Lists, and Columns.
+- IIS: Contains a script to full create a IIS application.
+
+
+
+ The project was created using a [Visual Studio Plugin](https://marketplace.visualstudio.com/items?itemName=AdamRDriscoll.PowerShellToolsforVisualStudio2017-18561)
