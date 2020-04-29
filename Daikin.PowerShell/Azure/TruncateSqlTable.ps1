@@ -1,36 +1,36 @@
 Param
-(  
-  [Parameter (Mandatory= $true)]
-  [String] $CredentialName,
-  [Parameter (Mandatory= $true)]
-  [String] $SqlServer,
-  [Parameter (Mandatory= $true)]
-  [String] $Database = "iep-prod",
-  [Parameter (Mandatory= $true)]
-  [String] $Table = "__TransactionHistory",
-  [Parameter (Mandatory= $true)]
-  [int] $DaysToSave = 1
+(
+[Parameter (Mandatory=Â $true)]
+[String] $CredentialName,
+[Parameter (Mandatory=Â $true)]
+[String] $SqlServer,
+[Parameter (Mandatory=Â $true)]
+[String] $DatabaseÂ =Â "iep-prod",
+[ParameterÂ (Mandatory=Â $true)]
+[String]Â $TableÂ =Â "__TransactionHistory",
+[ParameterÂ (Mandatory=Â $true)]
+[int]Â $DaysToSaveÂ =Â 1
 )
-   $Credentials = Get-AutomationPSCredential  -Name $CredentialName
-    # Get the username and password from the SQL Credential
-    $SqlUsername = $Credentials.UserName 
-    $SqlPass = $Credentials.GetNetworkCredential().Password
-    
-        # Define the connection to the SQL Database
-        $Conn = New-Object System.Data.SqlClient.SqlConnection("Server=tcp:$SqlServer,1433;Database=$Database;User ID=$SqlUsername;Password=$SqlPass;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;")
-        
-        # Open the SQL connection
-        $Conn.Open()
-        # Define the SQL command to run. In this case we are getting the number of rows in the table
-        $Cmd=new-object system.Data.SqlClient.SqlCommand("DELETE FROM dbo.$Table WHERE CreationTime < GETDATE() - $DaysToSave", $Conn)
-        $Cmd.CommandTimeout=120
-        # Execute the SQL command
-        $Ds=New-Object system.Data.DataSet
-        $Da=New-Object system.Data.SqlClient.SqlDataAdapter($Cmd)
-        [void]$Da.fill($Ds)
-        # Output the count
-        $Ds.Tables.Column1
-        # Close the SQL connection
-        $Conn.Close()
-    
+Â Â Â $CredentialsÂ =Â Get-AutomationPSCredentialÂ Â -NameÂ $CredentialName
+Â Â Â Â #Â GetÂ theÂ usernameÂ andÂ passwordÂ fromÂ theÂ SQLÂ Credential
+Â Â Â Â $SqlUsernameÂ =Â $Credentials.UserNameÂ 
+Â Â Â Â $SqlPassÂ =Â $Credentials.GetNetworkCredential().Password
+Â Â Â Â 
+Â Â Â Â Â Â Â Â #Â DefineÂ theÂ connectionÂ toÂ theÂ SQLÂ Database
+Â Â Â Â Â Â Â Â $ConnÂ =Â New-ObjectÂ System.Data.SqlClient.SqlConnection("Server=tcp:$SqlServer,1433;Database=$Database;UserÂ ID=$SqlUsername;Password=$SqlPass;Trusted_Connection=False;Encrypt=True;ConnectionÂ Timeout=30;")
+Â Â Â Â Â Â Â Â 
+Â Â Â Â Â Â Â Â #Â OpenÂ theÂ SQLÂ connection
+Â Â Â Â Â Â Â Â $Conn.Open()
+Â Â Â Â Â Â Â Â #Â DefineÂ theÂ SQLÂ commandÂ toÂ run.Â InÂ thisÂ caseÂ weÂ areÂ gettingÂ theÂ numberÂ ofÂ rowsÂ inÂ theÂ table
+Â Â Â Â Â Â Â Â $Cmd=new-objectÂ system.Data.SqlClient.SqlCommand("DELETEÂ FROMÂ dbo.$TableÂ WHEREÂ CreationTimeÂ <Â GETDATE()Â -Â $DaysToSave",Â $Conn)
+Â Â Â Â Â Â Â Â $Cmd.CommandTimeout=120
+Â Â Â Â Â Â Â Â #Â ExecuteÂ theÂ SQLÂ command
+Â Â Â Â Â Â Â Â $Ds=New-ObjectÂ system.Data.DataSet
+Â Â Â Â Â Â Â Â $Da=New-ObjectÂ system.Data.SqlClient.SqlDataAdapter($Cmd)
+Â Â Â Â Â Â Â Â [void]$Da.fill($Ds)
+Â Â Â Â Â Â Â Â #Â OutputÂ theÂ count
+Â Â Â Â Â Â Â Â $Ds.Tables.Column1
+Â Â Â Â Â Â Â Â #Â CloseÂ theÂ SQLÂ connection
+Â Â Â Â Â Â Â Â $Conn.Close()
+Â Â Â Â 
 
