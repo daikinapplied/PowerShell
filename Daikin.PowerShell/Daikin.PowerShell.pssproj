@@ -29,6 +29,7 @@
     <Folder Include="Azure\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Azure\RunSqlSp.ps1" />
     <Compile Include="Azure\TruncateSqlTable.ps1" />
     <Compile Include="Daikin.PowerShell.ps1" />
   </ItemGroup>
