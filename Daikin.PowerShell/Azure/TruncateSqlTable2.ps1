@@ -7,7 +7,7 @@ Param
 [Parameter (Mandatory= $true)]
 [String] $Database = "iep-prod",
 [Parameter (Mandatory= $true)]
-[String] $Table = "__TransactionHistory",
+[String] $Sp = "sp_HourlyProcessing",
 [Parameter (Mandatory= $true)]
 [int] $DaysToSave = 1
 )
@@ -22,7 +22,7 @@ Param
         # Open the SQL connection
         $Conn.Open()
         # Define the SQL command to run. In this case we are getting the number of rows in the table
-        $Cmd=new-object system.Data.SqlClient.SqlCommand("$Sp", $Conn)
+        $Cmd=new-object system.Data.SqlClient.SqlCommand("DELETE FROM dbo.$Table WHERE CreationTime < GETDATE() - $DaysToSave", $Conn)
         $Cmd.CommandTimeout=120
         # Execute the SQL command
         $Ds=New-Object system.Data.DataSet
