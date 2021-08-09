@@ -30,7 +30,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Azure\TruncateSqlTable2.ps1" />
-    <Compile Include="Azure\RunSqlSp.ps1" />
+    <Compile Include="Azure\RunSqlProc.ps1" />
     <Compile Include="Daikin.PowerShell.ps1" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
