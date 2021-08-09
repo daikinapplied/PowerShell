@@ -7,7 +7,7 @@ Param
 [Parameter (Mandatory= $true)]
 [String] $Database = "iep-prod",
 [Parameter (Mandatory= $true)]
-[String] $StoredProc,
+[String] $StoredProc = "sp_HourlyProcessing",
 [Parameter (Mandatory= $true)]
 [int] $DaysToSave = 1
 )
