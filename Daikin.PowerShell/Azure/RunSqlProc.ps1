@@ -5,7 +5,10 @@ Param
 [Parameter (Mandatory= $true)]
 [String] $SqlServer,
 [Parameter (Mandatory= $true)]
-[String] $Database = "iep-prod"
+[String] $Database = "iep-prod",
+[Parameter (Mandatory= $true)]
+[String] $Sp = "sp_HourlyProcessing",
+
 )
    $Credentials = Get-AutomationPSCredential  -Name $CredentialName
     # Get the username and password from the SQL Credential
